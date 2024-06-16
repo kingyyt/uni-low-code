@@ -13,13 +13,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ButtonD from "@/packages/basic/button/index.vue";
-console.log(ButtonD);
-console.log(ButtonD);
-console.log(ButtonD);
-console.log(ButtonD);
-console.log(ButtonD);
 
-const title = ref("Hello");
+import { GetJsonListDetail } from "@/api/microMain/microMain";
+
+let list = ref([]);
+const getJsonList = async () => {
+  const res = await GetJsonListDetail(1);
+  console.log(res);
+  if (res) {
+    console.log(JSON.parse(res.json));
+  }
+};
+getJsonList();
 </script>
 
 <style></style>
