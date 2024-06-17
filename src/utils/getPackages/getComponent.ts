@@ -1,3 +1,5 @@
+import { shallowRef } from "vue";
+
 export const loadComponent = async (com: string): Promise<any> => {
   try {
     const component = await import(`/src/packages/basic/${com}/index.vue`);
@@ -9,10 +11,11 @@ export const loadComponent = async (com: string): Promise<any> => {
 };
 
 export const allLoadComponent = async (data: any): Promise<any> => {
-  const jsonToData = data;
-  const newList: any = [];
-  jsonToData.forEach((item: any) => {
-    newList.push(loadComponent(item.id.split("-")[0]));
-  });
-  return newList;
+  Promise.all(
+    data.map(async (item: any) => {
+      const component = await loadComponent(item.id.split("-")[0]);
+      item.comName = shallowRef(component);
+    })
+  );
+  return data;
 };
