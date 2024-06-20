@@ -3,6 +3,10 @@ const common_vendor = require("../../common/vendor.js");
 const utils_getPackages_getComponent = require("../../utils/getPackages/getComponent.js");
 const api_microMain_microMain = require("../../api/microMain/microMain.js");
 require("../../http/httpRequest.js");
+if (!Array) {
+  const _component_van_button = common_vendor.resolveComponent("van-button");
+  _component_van_button();
+}
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "index",
   setup(__props) {
@@ -22,7 +26,10 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     });
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.f(common_vendor.unref(dynamicComponent), (item, index, i0) => {
+        a: common_vendor.p({
+          type: "danger"
+        }),
+        b: common_vendor.f(common_vendor.unref(dynamicComponent), (item, index, i0) => {
           return {
             a: index
           };

@@ -1,5 +1,6 @@
 <template>
   <view class="content">
+    <van-button type="danger"></van-button>
     <view v-for="(item, index) in dynamicComponent" :key="index">
       <!-- <component :is="item.comName" :props="item.props"></component> -->
     </view>
