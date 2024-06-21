@@ -2,13 +2,14 @@
   "pages": [
     "pages/index/index"
   ],
-  "usingComponents": {
-    "van-button": "/wxcomponents/vant/dist/button/index"
-  },
+  "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant-weapp/button/index"
   }
 }
