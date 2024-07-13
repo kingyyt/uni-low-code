@@ -2,9 +2,15 @@
   <view class="content">
     <image class="logo" src="/static/logo.png"></image>
     <view>
-      <text class="title">{{ title }}</text>
+      <text @click="aaa" class="title">{{ title }}</text>
       <van-button>123</van-button>
     </view>
+    <van-tabbar :active="active" @change="aaa">
+      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+      <van-tabbar-item icon="search">标签</van-tabbar-item>
+      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+    </van-tabbar>
   </view>
 </template>
 
@@ -14,6 +20,7 @@ export default {
   data() {
     return {
       title: "Hello",
+      active: 0,
     };
   },
   onLoad() {
@@ -23,6 +30,11 @@ export default {
     async init() {
       const res = await GetJsonListDetail(1);
       console.log(res);
+    },
+    aaa(event) {
+      console.log(123123);
+      // event.detail 的值为当前选中项的索引
+      this.active = event.detail;
     },
   },
 };
