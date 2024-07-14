@@ -15,4 +15,9 @@ export default {
 <style>
 /*每个页面公共css */
 @import "@/wxcomponents/vant-weapp/common/index.wxss";
+
+.van-tabbar {
+  position: fixed;
+  bottom: 0;
+}
 </style>

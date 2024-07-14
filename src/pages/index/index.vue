@@ -5,18 +5,54 @@
       <text @click="aaa" class="title">{{ title }}</text>
       <van-button>123</van-button>
     </view>
-    <van-tabbar :active="active" @change="aaa">
+    <!-- <van-tabbar :active="active" @change="aaa">
       <van-tabbar-item icon="home-o">标签</van-tabbar-item>
       <van-tabbar-item icon="search">标签</van-tabbar-item>
       <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
       <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-    </van-tabbar>
+    </van-tabbar> -->
+    <Tabbar
+      @clickItem="clickItem"
+      :props="{
+        active: 0,
+        tabbars: [
+          {
+            icon: 'wap-home-o ',
+            name: '首页',
+            pageName: '测试页面4',
+            select: 81,
+          },
+          {
+            icon: 'list-switch ',
+            name: '分类页',
+            pageName: '分类页',
+            select: 75,
+          },
+          {
+            icon: 'logistics ',
+            name: '购物车',
+            pageName: '购物车页',
+            select: 76,
+          },
+          {
+            icon: 'friends-o ',
+            name: '我的',
+            pageName: '个人中心',
+            select: 77,
+          },
+        ],
+      }"
+    />
   </view>
 </template>
 
 <script>
 import { GetJsonListDetail } from "@/api/index";
+import Tabbar from "@/packages/tabbar/index";
 export default {
+  components: {
+    Tabbar,
+  },
   data() {
     return {
       title: "Hello",
@@ -36,6 +72,7 @@ export default {
       // event.detail 的值为当前选中项的索引
       this.active = event.detail;
     },
+    clickItem() {},
   },
 };
 </script>
