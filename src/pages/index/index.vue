@@ -2,7 +2,7 @@
   <view class="content">
     <image class="logo" src="/static/logo.png"></image>
     <view>
-      <text @click="aaa" class="title">{{ title }}</text>
+      <text class="title">{{ title }}</text>
       <van-button>123</van-button>
     </view>
     <!-- <van-tabbar :active="active" @change="aaa">
@@ -59,20 +59,30 @@ export default {
       active: 0,
     };
   },
+  methods: {
+    init() {
+      this.getData();
+    },
+    async getData() {
+      const res = await GetJsonListDetail(81);
+      console.log(res);
+      uni.setStorage({
+        key: "storage_json",
+        data: JSON.parse(res.json),
+      });
+      this.cData();
+    },
+    cData() {
+      uni.getStorage({
+        key: "storage_json",
+        success: function (res) {
+          console.log(res.data);
+        },
+      });
+    },
+  },
   onLoad() {
     this.init();
-  },
-  methods: {
-    async init() {
-      const res = await GetJsonListDetail(1);
-      console.log(res);
-    },
-    aaa(event) {
-      console.log(123123);
-      // event.detail 的值为当前选中项的索引
-      this.active = event.detail;
-    },
-    clickItem() {},
   },
 };
 </script>

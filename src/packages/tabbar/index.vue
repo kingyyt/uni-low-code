@@ -24,7 +24,6 @@ export default {
   methods: {
     onChange(e) {
       this.active = e.detail;
-      console.log(tabbarToPage(this.props.tabbars[e.detail].name))
       uni.redirectTo({url:tabbarToPage(this.props.tabbars[e.detail].name)})
     //   this.$emit("clickItem", this.active);
     },
