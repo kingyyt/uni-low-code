@@ -19,17 +19,12 @@ export default {
       uni.setStorage({
         key: "storage_json",
         data: JSON.parse(res.json),
-        success: function () {
-          console.log("json");
-        },
       });
       uni.setStorage({
         key: "storage_tabbars",
         data: JSON.parse(res.tabbars),
-        success: function () {
-          console.log("tabbars");
-        },
       });
+      this.$isResolve();
     },
   },
 };

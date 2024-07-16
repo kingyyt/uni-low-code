@@ -20,15 +20,9 @@ export default {
       tabbars: null,
     };
   },
-  onLoad() {
+  async onLoad() {
+    await this.$onLaunched;
     this.getTabbarsValue();
-  },
-  watch: {
-    tabbars(newVal, oldVal) {
-      // 当 storageData 变化时，会触发这个函数
-      console.log("storageData changed:", newVal);
-    },
-    deep: true,
   },
   methods: {
     init() {},
