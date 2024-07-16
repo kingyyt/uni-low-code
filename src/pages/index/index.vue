@@ -3,51 +3,12 @@
     <image class="logo" src="/static/logo.png"></image>
     <view>
       <text class="title">{{ title }}</text>
-      <van-button>123</van-button>
     </view>
-    <!-- <van-tabbar :active="active" @change="aaa">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-    </van-tabbar> -->
-    <Tabbar
-      @clickItem="clickItem"
-      :props="{
-        active: 0,
-        tabbars: [
-          {
-            icon: 'wap-home-o ',
-            name: '首页',
-            pageName: '测试页面4',
-            select: 81,
-          },
-          {
-            icon: 'list-switch ',
-            name: '分类页',
-            pageName: '分类页',
-            select: 75,
-          },
-          {
-            icon: 'logistics ',
-            name: '购物车',
-            pageName: '购物车页',
-            select: 76,
-          },
-          {
-            icon: 'friends-o ',
-            name: '我的',
-            pageName: '个人中心',
-            select: 77,
-          },
-        ],
-      }"
-    />
+    <Tabbar v-if="tabbars" @clickItem="clickItem" :props="tabbars.tabbars" />
   </view>
 </template>
 
 <script>
-import { GetJsonListDetail } from "@/api/index";
 import Tabbar from "@/packages/tabbar/index";
 export default {
   components: {
@@ -56,33 +17,44 @@ export default {
   data() {
     return {
       title: "Hello",
-      active: 0,
+      tabbars: null,
     };
   },
-  methods: {
-    init() {
-      this.getData();
+  onLoad() {
+    this.getTabbarsValue();
+  },
+  watch: {
+    tabbars(newVal, oldVal) {
+      // 当 storageData 变化时，会触发这个函数
+      console.log("storageData changed:", newVal);
     },
-    async getData() {
-      const res = await GetJsonListDetail(81);
-      console.log(res);
-      uni.setStorage({
-        key: "storage_json",
-        data: JSON.parse(res.json),
+    deep: true,
+  },
+  methods: {
+    init() {},
+    getTabbarsValue() {
+      uni.getStorage({
+        key: "storage_tabbars",
+        success: (res) => {
+          this.tabbars = res.data;
+        },
       });
-      this.cData();
     },
     cData() {
-      uni.getStorage({
+      const json = uni.getStorage({
         key: "storage_json",
         success: function (res) {
           console.log(res.data);
         },
       });
+      uni.getStorage({
+        key: "storage_tabbars",
+        success: function (res) {
+          this.tabbars = res.data;
+          console.log(this.tabbars, "-----");
+        },
+      });
     },
-  },
-  onLoad() {
-    this.init();
   },
 };
 </script>

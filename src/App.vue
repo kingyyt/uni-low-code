@@ -1,13 +1,36 @@
 <script>
+import { GetJsonListDetail } from "@/api/index";
 export default {
   onLaunch: function () {
-    console.log("App Launch");
+    this.init();
+    this.getData();
   },
-  onShow: function () {
-    console.log("App Show");
-  },
-  onHide: function () {
-    console.log("App Hide");
+  methods: {
+    init() {
+      uni.removeStorage({
+        key: "storage_json",
+      });
+      uni.removeStorage({
+        key: "storage_tabbars",
+      });
+    },
+    async getData() {
+      const res = await GetJsonListDetail(81);
+      uni.setStorage({
+        key: "storage_json",
+        data: JSON.parse(res.json),
+        success: function () {
+          console.log("json");
+        },
+      });
+      uni.setStorage({
+        key: "storage_tabbars",
+        data: JSON.parse(res.tabbars),
+        success: function () {
+          console.log("tabbars");
+        },
+      });
+    },
   },
 };
 </script>
