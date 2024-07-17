@@ -1,7 +1,6 @@
 <script lang="js">
 import { tabbarToPage } from "@/utils/toPage"
 export default {
-  //   name: "tabbar",
   props: {
     props: {
       type: Object,
@@ -11,21 +10,27 @@ export default {
   data() {
     return {
       active: 0,
+      tabbars:null,
     };
   },
-    watch: {
-      props: {
-        handler() {
-          this.active = this.props.active;
-        },
-        deep: true,
-      },
-    },
+  mounted(){
+      this.active = this.props.active
+
+  },
   methods: {
     onChange(e) {
-      this.active = e.detail;
       uni.redirectTo({url:tabbarToPage(this.props.tabbars[e.detail].name)})
-    //   this.$emit("clickItem", this.active);
+      uni.getStorage({
+        key: "storage_tabbars",
+        success: (res) => {
+          this.tabbars = res.data;
+          this.tabbars.tabbars.active = e.detail;
+          uni.setStorage({
+            key: "storage_tabbars",
+            data: this.tabbars,
+          });
+        },
+      });
     },
   },
 };

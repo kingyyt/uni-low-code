@@ -11,6 +11,18 @@
       "style": {
         "navigationBarTitleText": "tabbar1"
       }
+    },
+    {
+      "path": "pages/index/tabbar2",
+      "style": {
+        "navigationBarTitleText": "tabbar2"
+      }
+    },
+    {
+      "path": "pages/index/tabbar3",
+      "style": {
+        "navigationBarTitleText": "tabbar3"
+      }
     }
   ],
 

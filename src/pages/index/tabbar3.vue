@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    2222
+    444
     <Tabbar v-if="tabbars" :props="tabbars.tabbars" />
   </view>
 </template>

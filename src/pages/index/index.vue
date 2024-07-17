@@ -4,7 +4,7 @@
     <view>
       <text class="title">{{ title }}</text>
     </view>
-    <Tabbar v-if="tabbars" @clickItem="clickItem" :props="tabbars.tabbars" />
+    <Tabbar v-if="tabbars" :props="tabbars.tabbars" />
   </view>
 </template>
 
@@ -18,6 +18,7 @@ export default {
     return {
       title: "Hello",
       tabbars: null,
+      json: null,
     };
   },
   async onLoad() {
@@ -34,18 +35,12 @@ export default {
         },
       });
     },
-    cData() {
-      const json = uni.getStorage({
-        key: "storage_json",
-        success: function (res) {
-          console.log(res.data);
-        },
-      });
+
+    getJsonValue() {
       uni.getStorage({
-        key: "storage_tabbars",
-        success: function (res) {
-          this.tabbars = res.data;
-          console.log(this.tabbars, "-----");
+        key: "storage_json",
+        success: (res) => {
+          this.json = res.data;
         },
       });
     },
