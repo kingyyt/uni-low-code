@@ -1,5 +1,5 @@
 <template>
-  <view class="content">
+  <view>
     444
     <Tabbar v-if="tabbars" :props="tabbars.tabbars" />
   </view>
@@ -13,9 +13,7 @@ export default {
   },
   data() {
     return {
-      title: "Hello",
       tabbars: null,
-      json: null,
     };
   },
   async onLoad() {
@@ -26,18 +24,9 @@ export default {
     init() {},
     getTabbarsValue() {
       uni.getStorage({
-        key: "storage_tabbars",
+        key: "storage_data",
         success: (res) => {
-          this.tabbars = res.data;
-        },
-      });
-    },
-
-    getJsonValue() {
-      uni.getStorage({
-        key: "storage_json",
-        success: (res) => {
-          this.json = res.data;
+          this.tabbars = res.data.tabbars;
         },
       });
     },

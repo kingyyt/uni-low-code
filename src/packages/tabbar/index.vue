@@ -21,12 +21,13 @@ export default {
     onChange(e) {
       uni.redirectTo({url:tabbarToPage(this.props.tabbars[e.detail].name)})
       uni.getStorage({
-        key: "storage_tabbars",
+        key: "storage_data",
         success: (res) => {
+          console.log(res.data)
           this.tabbars = res.data;
-          this.tabbars.tabbars.active = e.detail;
+          this.tabbars.tabbars.tabbars.active = e.detail;
           uni.setStorage({
-            key: "storage_tabbars",
+            key: "storage_data",
             data: this.tabbars,
           });
         },

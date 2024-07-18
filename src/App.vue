@@ -8,21 +8,15 @@ export default {
   methods: {
     init() {
       uni.removeStorage({
-        key: "storage_json",
-      });
-      uni.removeStorage({
-        key: "storage_tabbars",
+        key: "storage_data",
       });
     },
     async getData() {
       const res = await GetJsonListDetail(81);
+      console.log(res.data);
       uni.setStorage({
-        key: "storage_json",
-        data: JSON.parse(res.json),
-      });
-      uni.setStorage({
-        key: "storage_tabbars",
-        data: JSON.parse(res.tabbars),
+        key: "storage_data",
+        data: res.data,
       });
       this.$isResolve();
     },

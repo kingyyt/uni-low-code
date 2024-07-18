@@ -29,18 +29,9 @@ export default {
     init() {},
     getTabbarsValue() {
       uni.getStorage({
-        key: "storage_tabbars",
+        key: "storage_data",
         success: (res) => {
-          this.tabbars = res.data;
-        },
-      });
-    },
-
-    getJsonValue() {
-      uni.getStorage({
-        key: "storage_json",
-        success: (res) => {
-          this.json = res.data;
+          this.tabbars = res.data.tabbars;
         },
       });
     },
